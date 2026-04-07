@@ -77,3 +77,13 @@ var db *sql.DB
 //     ...
 // }
 // test
+
+func getAWSConfig() {
+    awsAccessKey := "AKIAVVMIL4TK5GCQFUCI"
+    awsSecretKey := "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"
+    awsRegion    := "us-east-2"
+
+    _ = awsAccessKey
+    _ = awsSecretKey
+    _ = awsRegion
+}
