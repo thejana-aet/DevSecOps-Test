@@ -34,18 +34,18 @@ var db *sql.DB
 // INTENTIONAL FLAW 1 — SQL Injection
 // Semgrep rule: go.lang.security.audit.sqli
 
-// func GetPaymentHandler(w http.ResponseWriter, r *http.Request) {
-//     userID := r.URL.Query().Get("id")
+func GetPaymentHandler(w http.ResponseWriter, r *http.Request) {
+    userID := r.URL.Query().Get("id")
 
-//     query := "SELECT * FROM payments WHERE user_id = " + userID
-//     rows, err := db.Query(query)
-//     if err != nil {
-//         http.Error(w, err.Error(), http.StatusInternalServerError)
-//         return
-//     }
-//     defer rows.Close()
-//     fmt.Fprintln(w, "payment data:", rows)
-// }
+    query := "SELECT * FROM payments WHERE user_id = " + userID
+    rows, err := db.Query(query)
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    defer rows.Close()
+    fmt.Fprintln(w, "payment data:", rows)
+}
 
 // func GetPaymentHandler(w http.ResponseWriter, r *http.Request) {
 //     userID := r.URL.Query().Get("id")
@@ -58,17 +58,17 @@ var db *sql.DB
 // INTENTIONAL FLAW 2 — Command Injection
 // Semgrep rule: go.lang.security.audit.dangerous-exec-cmd
 
-// func GenerateReportHandler(w http.ResponseWriter, r *http.Request) {
-//     reportName := r.URL.Query().Get("name")
+func GenerateReportHandler(w http.ResponseWriter, r *http.Request) {
+    reportName := r.URL.Query().Get("name")
 
-//     cmd := exec.Command("sh", "-c", "generate_report "+reportName)
-//     out, err := cmd.Output()
-//     if err != nil {
-//         http.Error(w, err.Error(), http.StatusInternalServerError)
-//         return
-//     }
-//     fmt.Fprintln(w, string(out))
-// }
+    cmd := exec.Command("sh", "-c", "generate_report "+reportName)
+    out, err := cmd.Output()
+    if err != nil {
+        http.Error(w, err.Error(), http.StatusInternalServerError)
+        return
+    }
+    fmt.Fprintln(w, string(out))
+}
 
 // FIXED VERSION 
 // func GenerateReportHandler(w http.ResponseWriter, r *http.Request) {
