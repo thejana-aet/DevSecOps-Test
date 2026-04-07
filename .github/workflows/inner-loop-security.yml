@@ -42,6 +42,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Semgrep — scan code for vulnerabilities
-        run: semgrep scan --config=auto --error ./backend  
+        run: semgrep scan --config=auto --error ./devsecops-reference-architecture/backend  
          
      
