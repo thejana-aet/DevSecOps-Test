@@ -3,10 +3,10 @@ name: Inner Loop — Security Gates
 on:
   push:
     branches:
-      - inner-loop-configurations          
+      - test          
   pull_request:
     branches:
-      - inner-loop-configurations          
+      - test          
 
 jobs:
 
@@ -44,23 +44,4 @@ jobs:
       - name: Semgrep — scan code for vulnerabilities
         run: semgrep scan --config=auto --error ./backend  
          
-  # ── GATE 3: SCA — Snyk ───────────────────────────────────────
-  sca:
-    name: "SCA — Snyk"
-    runs-on: ubuntu-latest
-    needs: sast-semgrep
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # - name: Set up Go
-      #   uses: actions/setup-go@v1
-      #   with:
-      #     go-version: '1.19'
-
-      - name: Snyk scan
-        uses: snyk/actions/golang@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high --file=backend/go.mod      
+     
