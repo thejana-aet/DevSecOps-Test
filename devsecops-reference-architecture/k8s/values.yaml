@@ -1,0 +1,50 @@
+replicaCount: 1
+namespace:
+  create: false
+  name: ""
+image:
+  repository: 123456789012.dkr.ecr.us-east-1.amazonaws.com/devsecops-demo/backend
+  tag: e543840
+  pullPolicy: IfNotPresent
+podAnnotations: {}
+podLabels: {}
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+  annotations: {}
+livenessProbe:
+  path: /health/live
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+readinessProbe:
+  path: /health/ready
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    memory: 256Mi
+ingress:
+  enabled: true
+  className: alb
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /health/live
+  hosts:
+    - host: ""
+      paths:
+        - path: /health
+          pathType: Prefix
+          servicePort: 80
+        - path: /
+          pathType: Prefix
+          servicePort: 80

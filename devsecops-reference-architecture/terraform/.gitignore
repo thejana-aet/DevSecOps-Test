@@ -1,0 +1,43 @@
+# Terraform files to ignore
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Backend configuration (contains sensitive info)
+backend.hcl
+**/backend.hcl
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terraform variables that might contain sensitive data
+*.tfvars.json
+# But we DO want to commit terraform.tfvars as it's the configuration template
+# !terraform.tfvars  # (already tracked)
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
+# Ignore plan files
+*.tfplan
+
+# Ignore any local environment files
+.env
+*.local
+
+# AWS profile configuration (contains user-specific profile name)
+.aws-profile
+.terraform-profile
+**/.terraform-profile

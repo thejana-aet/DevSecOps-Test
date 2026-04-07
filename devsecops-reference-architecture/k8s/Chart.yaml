@@ -1,0 +1,7 @@
+apiVersion: v2
+name: backend
+version: 0.1.0
+appVersion: "e543840"
+description: Helm chart for the DevSecOps demo backend service
+kubeVersion: ">=1.23.0"
+type: application

@@ -1,0 +1,5 @@
+k8s/
+infra/
+*.tf
+Dockerfile
+**/*_test.go

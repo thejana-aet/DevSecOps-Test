@@ -1,0 +1,64 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+backend/server
+backend/cmd/server/server
+
+# Go
+*.test
+*.out
+go.work
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
+terraform/.env
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Node modules (if we add frontend tooling later)
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# CI/CD secrets
+secrets/
+*.pem
+*.key
+!*.pub
+
+# Build artifacts
+dist/
+build/
+target/
+
+# Documentation builds
+docs/_build/
