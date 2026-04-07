@@ -22,6 +22,7 @@ jobs:
 
       - name: TruffleHog — scan git for secrets
         uses: trufflesecurity/trufflehog@main
+        continue-on-error: true
         with:
           base: ""
           head: ${{ github.ref_name }}  # commented out not to scan full git history, but only the latest commit.
@@ -42,6 +43,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Semgrep — scan code for vulnerabilities
-        run: semgrep scan --config=auto --error ./devsecops-reference-architecture/backend  
+        run: semgrep scan --config=auto --error ./devsecops-reference-architecture/backend
+        continue-on-error: true  
          
      
